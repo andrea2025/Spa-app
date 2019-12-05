@@ -11,19 +11,21 @@
       </div>
     </div>
     <mainPage/>
+    <footer/>
   </div>
 </template>
 
 <script>
 import NavBar from '@/components/NavBar.vue'
 import mainPage from '@/components/mainPage.vue'
-//import Booking from '@/components/Booking'
+import footer from '@/components/footer'
 
 export default {
   name: 'home',
   components: { 
   mainPage,
-  NavBar
+  NavBar,
+  footer
   }
 }
 </script>

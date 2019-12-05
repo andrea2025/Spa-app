@@ -1,85 +1,135 @@
-import Vue from 'vue'
-import Vuex from 'vuex'
-import axios from 'axios'
-import router from "../router" 
+import Vue from "vue";
+import Vuex from "vuex";
+import axios from "axios";
+import router from "../router";
 
-Vue.use(Vuex)
+Vue.use(Vuex);
 
 export default new Vuex.Store({
   state: {
-    response:{
-      type: '',
-      message:''
-    }
+    response: {
+      type: "",
+      message: ""
+    },
+    token: localStorage.getItem("access_token") || null,
+    bookings: []
   },
- 
+  getters: {
+    //currentbooking: state => state.booking,
+    userlogin(state) {
+      return state.token !== null;
+    },
+    setbooking: state => state.bookings 
+  },
+
   mutations: {
+    setResponse: (state, payload) => {
+      state.response = {
+        type: payload.type,
+        message: payload.message
+      };
+    },
+    signOut: (state, payload) => {
+      state.token = payload;
+    },
+    getToken: (state, token) => {
+      state.token = token;
+    },
+    destroyToken(state) {
+      state.token = null;
+    },
+    setbookings (state, bookings) {
+      state.bookings = bookings;
+      }, 
+   
   },
-  actions: { 
-     async  Register({commit}, userData) {
-        try{
-         const response = await axios.post('http://localhost:3000/register', userData)
- console.log(response);
-          let responseObject = {
-            type: 'success',
-            message: response.data.message
-          }
-          commit('setResponse', responseObject)
-          router.push("/login")
-          console.log(responseObject)
-        }catch(error){
-          console.log(error.response)
-          }
-        },
+  actions: {
+    async Register({ commit }, userData) {
+      try {
+        const response = await axios.post(
+          "http://localhost:3000/register",
+          userData
+        );
+        console.log(response);
+        let responseObject = {
+          type: "success",
+          message: response.data.message
+        };
+        commit("setResponse", responseObject);
+        router.push("/login");
+        console.log(responseObject);
+      } catch (error) {
+        console.log(error.response);
+      }
+    },
 
-        async  Login({commit}, userData) {
-          try{
-           const response = await axios.post('http://localhost:3000/login', userData)
-   console.log(response);
-            let responseObject = {
-              type: 'success',
-              message: response.data.message
-            }
-            router.push("/booking")
-            commit('setResponse', responseObject)
-          }catch(error){
-            console.log(error.response)
-            }
-          },
+    async Login({ commit }, userData) {
+      try {
+        const response = await axios.post(
+          "http://localhost:3000/login",
+          userData
+        );
+        console.log(response);
+        let responseObject = {
+          type: "success",
+          message: response.data.message
+        };
+        const token = response.data.token;
+        localStorage.setItem("access_token", token);
+        commit("getToken", token);
+        router.push("/booking");
+        commit("setResponse", responseObject);
+        console.log(token);
+      } catch (error) {
+        console.log(error.response);
+      }
+    },
 
-          async  Booking({commit}, userData) {
-            try{
-             const response = await axios.post('http://localhost:3000/booking', userData)
-     console.log(response);
-              let responseObject = {
-                type: 'success',
-                message: response.data.message
-              }
-              router.push("/bookingSum")
-              commit('setResponse', responseObject)
-            }catch(error){
-              console.log(error.response)
-              }
-            },
+    async Booking({ commit }, userData) {
+      try {
+        axios.defaults.headers.common["Authorization"] =
+          "Bearer " + this.state.token;
 
-            async  BookingSum({commit}, userData) {
-              try{
-               const response = await axios.delete('http://localhost:3000/booking/:id', userData)
-       console.log(response);
-                let responseObject = {
-                  type: 'success',
-                  message: response.data.message
-                }
-                // router.push("/bookingSum")
-                commit('setResponse', responseObject)
-              }catch(error){
-                console.log(error.response)
-                }
-              }
+        const response = await axios.post(
+          "http://localhost:3000/booking",
+          userData
+        );
+        console.log(response);
+        let responseObject = {
+          type: "success",
+          message: response.data.message
+        };
+        console.log('helloworld');
+        router.push("/bookingSum")
+        commit("setResponse", responseObject);
+      } catch (error) {
+        console.log(error.response);
+      }
+    },
+    logout({ commit }) {
+      localStorage.removeItem("access_token");
+      commit("destroyToken"), router.push("/");
+    },
+   
+
+    async BookingSum({ commit}) {
+     
+      try {
+        console.log('start request');
+        const response = await axios.get("http://localhost:3000/booking/all");
+        console.log(response);
+      
+        commit('setbookings', response.data)
+        console.log("response", response)
+         //router.push("/bookingSum")
   
+      } catch (error) {
+        console.log(error.response);
+      }
+    }
 
-      },
-  modules: {
+    
   },
-
-  });
+  modules: {}
+});
+ 

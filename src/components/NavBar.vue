@@ -1,37 +1,62 @@
 <template>
-    <div class="Nav">
-       <nav class="navigation">
-            <div class="top_bar1">
-            <router-link to="/"><h1>Andr@ <span> spa</span></h1></router-link> 
-        </div>
-        <ul class="nav_list">
-            <li class="nav_list_item item1"><router-link to="/">Home</router-link></li>
-            <li class="nav_list_item"> <router-link to="/about">About</router-link></li>
-        </ul>
-        <div class="nav_auth auth">
-        <router-link :to="{name:'register'}"> Register</router-link>
+  <div class="Nav">
+    <nav class="navigation">
+      <div class="top_bar1">
+        <router-link to="/"
+          ><h1>Andr@ <span> spa</span></h1></router-link>
       </div>
-       <div class="nav_auth">
-       <router-link :to="{name:'login'}"> Login </router-link>
-      </div>
-       </nav>
-    </div>
+      <ul class="nav_list">
+            <li class="nav_list_item item1">
+            <router-link to="/">Home</router-link>
+            </li>
+            <li class="nav_list_item">
+            <router-link to="/about">About</router-link>
+            </li>
+            <li>
+              <router-link to="/bookingSum">Bookings</router-link>
+            </li>
+      </ul>
+      <ul v-if="!userlogin" class="d-flex mx-2">
+        <li class="nav_auth auth">
+          <router-link :to="{ name: 'register' }"> Register</router-link>
+        </li>
+        <li class="nav_auth">
+          <router-link :to="{ name: 'login' }"> Login </router-link>
+        </li>
+      </ul>
+      <ul class="nav_auth" v-else>
+        <a href="#" @click="signOut">Logout</a>
+      </ul>
+    </nav>
+  </div>
 </template>
 <script>
+import {mapGetters,mapActions} from 'vuex'
 export default {
-    name:'NavBar'
-}
+  name: "NavBar",
+  computed:{
+      ...mapGetters(['userlogin'])
+  },
+   methods: {
+    ...mapActions(['logout']),
+    signOut(){
+      this.logout()
+      
+    }
+
+  }
+};
 </script>
-<style  scoped>
+<style scoped>
 a {
   color: inherit;
   text-decoration: none;
 }
-h1{
-    color: rgb(236, 19, 200);
+h1 {
+  color: rgb(236, 19, 200);
 }
-.item1{
-    margin-right: 3em;
+.item1 {
+  margin-right: 3em;
 }
 .navigation {
   display: flex;
@@ -44,28 +69,31 @@ h1{
 /* .navigation  .router-link-exact-active {
     color:#fff;
 } */
-.top_bar1  span {
-    color:#fff;
+.top_bar1 span {
+  color: #fff;
 }
 .nav_list {
   display: flex;
   list-style: none;
 }
-.nav_list_item{
-    margin: 0 5em;
+.nav_list_item {
+  margin: 0 5em;
 }
-.auth{
-    margin-left: 9em;
+li{
+    list-style: none;
+}
+.auth {
+  margin-right: 7em;
 }
 .nav_auth {
-     background: linear-gradient(180deg, rgba(255, 255, 255, 0.2) 100%), #EA3CCE;
-     color: #fff;
-    
-border-radius: 20px;
-padding: 0.8em 1.5em;
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.2) 100%), #ea3cce;
+  color: #fff;
+  cursor:pointer;
+  border-radius: 20px;
+  padding: 0.8em 1.5em;
 }
 .nav_auth:hover {
-    background: linear-gradient(180deg, #FFFFFF 0%, rgba(255, 255, 255, 0) 100%), #EA3CCE;
-
+  background: linear-gradient(180deg, #c4a0a0 0%, rgba(255, 255, 255, 0) 100%),
+    #ea3cce;
 }
 </style>

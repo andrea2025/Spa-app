@@ -2,10 +2,11 @@ import Vue from 'vue'
 import VueRouter from 'vue-router'
 import Home from '../views/Home.vue'
 import Register from '../views/Register.vue'
-import Login from '../components/Login.vue'
+import Login from '../views/Login.vue'
 import Booking from '../components/Booking.vue'
-import BookingSum from '../components/BookingSum.vue'
+import BookingSum from '../views/BookingSum.vue'
 import mainPage from  '../components/mainPage.vue'
+import footer from  '../components/footer.vue'
 
 
 
@@ -56,6 +57,11 @@ const routes = [
     path: '/bookingSum',
     name: 'bookingSum',
     component: BookingSum
+  },
+  {
+    path: '/logout',
+    name: 'footer',
+    component: footer
   }
 ]
 

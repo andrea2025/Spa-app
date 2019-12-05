@@ -19,16 +19,14 @@
      <div>
             <router-link to="/"><i class="fa fa-caret-up" aria-hidden="true"></i></router-link> 
         </div> 
+        <footer/>
   </div>
 </template>
 
 <script>
-//import NavBar from '@/components/NavBar.vue'
+// import footer from '@/components/footer.vue'
 export default {
   name: "mainPage",
-//   components:{
-//       NavBar
-//   }
 };
 </script>
 <style scoped>
