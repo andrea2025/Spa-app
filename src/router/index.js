@@ -1,7 +1,7 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
 import Home from '../views/Home.vue'
-import Register from '../components/Register.vue'
+import Register from '../views/Register.vue'
 import Login from '../components/Login.vue'
 import Booking from '../components/Booking.vue'
 import BookingSum from '../components/BookingSum.vue'
@@ -42,12 +42,15 @@ const routes = [
   {
     path: '/login',
     name: 'login',
-    component: Login
+    component: Login,
   },
   {
     path: '/booking',
     name: 'booking',
-    component: Booking
+    component: Booking,
+    meta: {
+      requiresAuth: true,
+    }
   },
   {
     path: '/bookingSum',
@@ -61,5 +64,5 @@ const router = new VueRouter({
   base: process.env.BASE_URL,
   routes
 })
-
+ 
 export default router

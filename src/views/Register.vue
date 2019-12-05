@@ -1,62 +1,64 @@
 <template>
   <div>
+    
     <div class="bg_img">
-     <NavBar/>
+   <NavBar/>
     </div>
    
-   
-    <form  @submit.prevent="log" action="/login" method="post">
-       <h1>Member Login</h1>
+    <form  @submit.prevent="sign" action="/register" method="post">
+     <h1>Sign Up</h1>
+      <div class="form-group form1">
+        <label for="fullname">Fullname:</label>
+        <input type="name" name="name" class="form-control" placeholder="Enter name" v-model="userRegister.name" required/>
+      </div>
       <div class="form-group form1">
         <label for="Email" class=" form_email">Email:</label>
-        <input type="email" name="email" class="form-control " placeholder="Enter email" v-model="userLogin.email"/>
+        <input type="email" name="email" class="form-control " placeholder="Enter email" v-model="userRegister.email" required/>
       </div>
       <div class="form-group form1">
         <label for="password">Password:</label>
-        <input type="password" name="password" class="form-control" placeholder="Password" v-model="userLogin.password"/>
+        <input type="password"  name="password" class="form-control" placeholder="Password" v-model="userRegister.password" required/>
       </div>
       <p class="form1">
-        Don’t have an account?
-        <router-link :to="{ name: 'register' }">Sign Up</router-link>
+        Already have an Account?
+        <router-link :to="{ name: 'login' }">Login</router-link>
       </p>
-      <button type="submit">Login</button>
+      <button type="submit">Sign Up</button>
     </form>
   </div>
-
-
 </template>
 
 <script>
 import NavBar from '@/components/NavBar.vue'
 import {mapActions} from 'vuex'
 export default {
-  name: "login",
+  name: "register",
   components:{
-NavBar
+    NavBar
   },
   data(){
-     return{
-      userLogin:{
-         email:'',
-    password: ''
+    return{
+      userRegister:{
+        name: '',
+        email: '',
+        password:''
       }
-     }
+    }
   },
-      methods:{
-     ...mapActions([
-    'Login'
+methods:  {
+  ...mapActions([
+    'Register'
   ]),
-  log(){
-    this.Login(this.userLogin)
+  sign(){
+    this.Register(this.userRegister)
   }
-
-  }
+}
 };
 </script>
 
 <style scoped>
 * {
-  background: #f4eded;
+  background: #eeeaea;
 }
 .bg_img{
   background-image: url("../assets/images/bg1.jpg");

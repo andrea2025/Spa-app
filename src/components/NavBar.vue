@@ -28,7 +28,7 @@ a {
   text-decoration: none;
 }
 h1{
-    color: #EA3CCE;
+    color: rgb(236, 19, 200);
 }
 .item1{
     margin-right: 3em;
@@ -37,10 +37,13 @@ h1{
   display: flex;
   justify-content: space-between;
   padding: 2em 3em;
-  color: #ffffff;
+  color: rgb(236, 19, 200);
   align-items: center;
   font-weight: bolder;
 }
+/* .navigation  .router-link-exact-active {
+    color:#fff;
+} */
 .top_bar1  span {
     color:#fff;
 }
@@ -56,6 +59,7 @@ h1{
 }
 .nav_auth {
      background: linear-gradient(180deg, rgba(255, 255, 255, 0.2) 100%), #EA3CCE;
+     color: #fff;
     
 border-radius: 20px;
 padding: 0.8em 1.5em;

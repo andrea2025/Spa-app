@@ -1,8 +1,6 @@
 <template>
   <div class="mainPage">
-      <!-- <div>
-            <router-link to="/"><h1>Andr@</h1></router-link> 
-        </div> -->
+     
     <div class="About_page d-flex justify-content-around">
       <div>
         <img src="../assets/images/about.jpg" alt="Spa-face" />
@@ -18,6 +16,9 @@
         </p>
       </div>
     </div>
+     <div>
+            <router-link to="/"><i class="fa fa-caret-up" aria-hidden="true"></i></router-link> 
+        </div> 
   </div>
 </template>
 
@@ -49,9 +50,19 @@ hr {
 }
  img {
      height:500px;
+     border-radius: 100px;
 
  }
  .about_text span{
      color: #EA3CCE;
  }
+ i{
+   font-size: 5em;
+   color: rgb(2, 70, 19);
+   margin-left:11.5em;
+ }
+ i:hover{
+   color: rgb(2, 70, 19,0.8);
+ }
+
 </style>

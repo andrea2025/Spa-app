@@ -6,26 +6,24 @@
       <div class="side_text">
         <h2>Experience the secret  of Relaxation</h2>
         <div>
-          <button><a href="#">Book Now</a></button>
+          <button> <router-link :to="{ name: 'login' }">Book Now</router-link></button>
         </div>
       </div>
     </div>
     <mainPage/>
-    <Booking/>
   </div>
 </template>
 
 <script>
 import NavBar from '@/components/NavBar.vue'
 import mainPage from '@/components/mainPage.vue'
-import Booking from '@/components/Booking'
+//import Booking from '@/components/Booking'
 
 export default {
   name: 'home',
   components: { 
   mainPage,
-  NavBar,
-  Booking
+  NavBar
   }
 }
 </script>
