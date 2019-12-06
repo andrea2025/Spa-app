@@ -78,16 +78,22 @@ export default new Vuex.Store({
           type: "success",
           message: response.data.message
         };
+        commit("setResponse", responseObject);
         const token = response.data.token;
         localStorage.setItem("access_token", token);
         commit("getToken", token);
         router.push("/booking");
-        commit("setResponse", responseObject);
-        console.log(token);
+        //here//
       } catch (error) {
+        let responseObject = {
+          type:'failed',
+          message:error.message.data.message
+        }
+        commit("setResponse", responseObject);
         console.log(error.response);
       }
     },
+      
 
     async Booking({ commit }, userData) {
       try {
