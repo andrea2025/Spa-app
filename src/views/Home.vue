@@ -10,22 +10,36 @@
         </div>
       </div>
     </div>
-    <mainPage/>
-    <footer/>
+    <div class="mainPage">
+        
+    <div class="About_page d-flex justify-content-around">
+      <div>
+        <img src="../assets/images/about.jpg" alt="Spa-face" />
+      </div>
+      <div class="about_text">
+        <h2>About   <span>Andr@ </span></h2> <hr>
+        <p>
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris
+          aliquam massa quis felis tempus, et elementum ipsum iaculis. Ut nec
+          tortor eget dolor finibus fermentum ut nec orci. Vestibulum tempor
+          neque sed sapien dapibus, vitae facilisis erat pharetra. Aenean et
+          dictum ante.Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris aliquam massa quis felis tempus, et elementum ipsum iaculis. Ut nec tortor eget dolor finibus fermentum ut nec orci. Vestibulum tempor neque sed sapien dapibus, vitae facilisis erat pharetra. Aenean et dictum ante.
+        </p>
+      </div>
+    </div>
+    </div>
+   <footer/>
   </div>
 </template>
 
 <script>
 import NavBar from '@/components/NavBar.vue'
-import mainPage from '@/components/mainPage.vue'
-import footer from '@/components/footer'
+//import footer from '@/components/footer'
 
 export default {
   name: 'home',
-  components: { 
-  mainPage,
-  NavBar,
-  footer
+  components: {
+  NavBar
   }
 }
 </script>
@@ -58,5 +72,36 @@ border-radius: 20px;
 color:#fff;
 text-decoration: none;  
 
+}
+.mainPage{
+    margin-top: 5em;
+}
+.about_text {
+    width: 30%;
+    text-align: left;
+    margin-right: 3em;
+}
+.about_text p{
+    letter-spacing: 0.03em;
+}
+hr {
+    width:20%;
+    background-color: black;
+    margin-left: 0.2em;
+}
+ img {
+     height:500px;
+     border-radius: 100px;
+
+ }
+ .about_text span{
+     color: #EA3CCE;
+ }
+ @media screen and (max-width: 768px) {
+  .top_bar{
+    background-position: center;
+    min-height: calc(100vh - 80px);
+  }
+  
 }
 </style>

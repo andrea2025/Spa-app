@@ -7,15 +7,15 @@
    
     <form  @submit.prevent="log" action="/login" method="post">
        <h1>Member Login</h1>
-      <div class="form-group form1">
-        <label for="Email" class=" form_email">Email:</label>
-        <input type="email" name="email" class="form-control " placeholder="Enter email" v-model="userLogin.email"/>
+      <div class="form1">
+        <label for="Email" >Email:</label><br>
+        <input type="email" name="email"  placeholder="Enter email" v-model="userLogin.email"/>
       </div>
-      <div class="form-group form1">
-        <label for="password">Password:</label>
-        <input type="password" name="password" class="form-control" placeholder="Password" v-model="userLogin.password"/>
+      <div class="form1">
+        <label for="password">Password:</label><br>
+        <input type="password" name="password"  placeholder="Password" v-model="userLogin.password"/>
       </div>
-      <p class="form1">
+      <p>
         Don’t have an account?
         <router-link :to="{ name: 'register' }">Sign Up</router-link>
       </p>
@@ -56,20 +56,17 @@ NavBar
 
 <style scoped>
 * {
-  background: #f4eded;
+  background: #eeeaea;
+  box-sizing: border-box;
 }
 .bg_img{
   background-image: url("../assets/images/bg1.jpg");
    min-height: calc(100vh - 100px);
         background-size: cover;
 }
-form {
-  width: 60%;
-  margin: auto ;
-  padding: 50px;
-}
+
 .form1{
-  margin-left: 13em;
+  margin: 1rem 0;
 }
 button {
   background: rgb(2, 70, 19);
@@ -81,29 +78,31 @@ button {
    margin-right: 1.5em;
 }
 button:hover{
- background: linear-gradient(
-      180deg,
-      rgba(255, 255, 255, 0.6) 0%,
-      rgba(255, 255, 255, 0) 100%
-    ),
-    rgb(2, 70, 19);
+ color:rgb(2, 70, 19);
+ background: transparent;
+ border: 2px solid black;
 }
-label {
+.form1 label {
   font-size: 15px;
   font-weight: 700;
-  padding-right: 31em;
+
 }
-.form_email{
-  padding-right: 33em;
-}
-input {
-  width: 50%;
-  opacity: 0.7;
+
+ .form1 input {
+width: 30%;
+  padding: 0.5rem;
   border: 2px solid #000000;
-   padding: 1rem;
   border-radius: 200px;
-}
+  font-size: 16px;
+  margin-top: 0.5rem;
+  display: inline-block;
+ }
 p {
-  text-align: left;
+  text-align: center;
+}
+@media screen and (max-width: 768px) {
+  .form1 input{
+    width:100%;
+  }
 }
 </style>

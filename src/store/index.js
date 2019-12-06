@@ -15,7 +15,7 @@ export default new Vuex.Store({
     bookings: []
   },
   getters: {
-    //currentbooking: state => state.booking,
+    apiResponse: state => state.response,
     userlogin(state) {
       return state.token !== null;
     },
@@ -36,12 +36,16 @@ export default new Vuex.Store({
       state.token = token;
     },
     destroyToken(state) {
-      state.token = null;
+      state.token = null;  
     },
     setbookings (state, bookings) {
       state.bookings = bookings;
       }, 
-   
+      deleteBooking(state, id) {
+        state.bookings = state.bookings.filter(function(item) {
+         return  item._id !== id;
+      })
+    }
   },
   actions: {
     async Register({ commit }, userData) {
@@ -99,7 +103,7 @@ export default new Vuex.Store({
           type: "success",
           message: response.data.message
         };
-        console.log('helloworld');
+    
         router.push("/bookingSum")
         commit("setResponse", responseObject);
       } catch (error) {
@@ -119,9 +123,25 @@ export default new Vuex.Store({
         const response = await axios.get("http://localhost:3000/booking/all");
         console.log(response);
       
-        commit('setbookings', response.data)
+        commit('setbookings', response.data.data)
         console.log("response", response)
          //router.push("/bookingSum")
+  
+      } catch (error) {
+        console.log(error.response.data.message);
+      }
+    },
+
+    async delBookings({ commit, id}) {
+     
+      try {
+        axios.defaults.headers.common["Authorization"] =
+        "Bearer " + this.state.token;
+        const response = await axios.delete(`http://localhost:3000/booking/${id}`);
+        console.log(response);
+      
+        commit('deleteBooking', id)
+        console.log("response", response)
   
       } catch (error) {
         console.log(error.response);

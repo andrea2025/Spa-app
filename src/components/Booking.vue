@@ -1,11 +1,13 @@
 <template>
-  <div>
+  <div class="form_bar">
     <NavBar/>
-    <div class="d-flex justify-content-between">
+    <div class="d-flex justify-content-between pb-3">
       <div>
-        <h1>Booking Enquiry</h1>
+       
         <form @submit.prevent="booked" action="/booking" method="post">
+         <h1>Booking Enquiry</h1>
           <div class="form-group ">
+            <label for="name"> Fullname:</label>
             <input
               type="name"
               name="name"
@@ -16,6 +18,7 @@
             />
           </div>
           <div class="form-group">
+            <label for="number">Number</label>
             <input
               type="number"
               name="number"
@@ -26,6 +29,7 @@
             />
           </div>
           <div class="form-group">
+            <label for="email">Email:</label>
             <input
               type="email"
               name="email"
@@ -38,6 +42,7 @@
 
           <h3 class="text-bold">Fix an Appointment</h3>
           <div class="form-group">
+            <label for="date">Date</label>
             <input
               type="date"
               name="date"
@@ -48,6 +53,7 @@
             />
           </div>
           <div class="form-group">
+            <label for="time">Time</label>
             <input
               type="time"
               name="time"
@@ -58,14 +64,15 @@
             />
           </div>
           <div>
+            <label for="sect">Treatment Selection</label>
             <select
               name="treatment"
-              class="form-control"
+              class="form-control" aria-placeholder="Spa treatment"
               v-model="user.treatment"
             >
-              <option value="#" selected>Treatment selection</option>
+              
               <option value="massage">Massage</option>
-              <option value="body trt">body Treatment</option>
+              <option value="body treatment">body Treatment</option>
               <option value="facials">Facials</option>
               <option value="nail">nail removal</option>
               <option value="medical">Medical Treatment</option>
@@ -73,15 +80,17 @@
           </div>
           <br />
           <div>
+            <label for="msg">Message</label>
             <textarea
               name="text"
               cols="10"
               rows="5"
               value="text"
               class="form-control"
+              placeholder="drop your treatment specification"
               v-model="user.text"
             >
-                message</textarea
+              </textarea
             >
           </div>
           <button type="submit">Book appointment</button>
@@ -113,64 +122,33 @@ export default {
     };
   },
 
-  // computed: {
-  //   ...mapGetters(["currentbooking"])
-  // },
   methods: {
-    ...mapActions(["Booking"]),
+    ...mapActions(["Booking" ,"BookingSum"]),
     booked() {
       this.Booking(this.user);
-      // .
+     
+      
     }
   }
 };
 </script>
 
 <style scoped>
-a {
-  color: inherit;
-  text-decoration: none;
+*{
+  box-sizing: border-box;
+  display:block;
+  margin: 1rem auto;
+   
 }
-.top_text {
-  color: rgb(236, 19, 200);
+.form_bar{
+background-image: url('../assets/images/bg1.jpg');
+   color:#000;
 }
-.item1 {
-  margin-right: 3em;
-}
-.navigation {
-  display: flex;
-  justify-content: space-between;
-  padding: 2em 3em;
-  color: rgb(236, 19, 200);
-  align-items: center;
-  font-weight: bolder;
-}
-.nav_list {
-  display: flex;
-  list-style: none;
-}
-.nav_list_item {
-  margin: 0 5em;
-}
-.auth {
-  margin-left: 9em;
-}
-.nav_auth {
-  background: linear-gradient(180deg, rgba(255, 255, 255, 0.2) 100%), #ea3cce;
-  color: #fff;
 
-  border-radius: 20px;
-  padding: 0.8em 1.5em;
-}
-.nav_auth:hover {
-  background: linear-gradient(180deg, #ffffff 0%, rgba(255, 255, 255, 0) 100%),
-    #ea3cce;
-}
 form {
   width: 150%;
   height: auto;
-  margin: 50px auto 0;
-  padding: 50px;
+  padding: 20px;
 }
 button {
   background: rgb(2, 70, 19);
@@ -179,60 +157,17 @@ button {
   padding: 0.8em 3em;
   color: white;
   cursor: pointer;
-  margin-top: 1.5em;
-  margin-right: 1em;
+  margin: 1em auto;
+  
 }
-button:hover {
-  background: linear-gradient(
-      180deg,
-      rgba(255, 255, 255, 0.6) 0%,
-      rgba(255, 255, 255, 0) 100%
-    ),
-    rgb(2, 70, 19);
+label{
+  text-align: left;
+  font-weight:bolder;
+}
+button:hover{
+ color:white;
+ background: transparent;
+ border: 2px solid black;
 }
 
-i {
-  font-size: 4em;
-  padding-bottom: 3em;
-}
-.btn_edit {
-  background: linear-gradient(180deg, rgba(255, 255, 255, 0) 100%), #ea3cce;
-  border-radius: 20px;
-  border: none;
-  padding: 1em 3em;
-}
-.btn_edit:hover {
-  background: linear-gradient(#ffffff 0%, rgba(255, 255, 255, 0) 100%), #ea3cce;
-}
-.btn_cancel {
-  background: #ffffff;
-  border: 2px solid #000000;
-  border-radius: 20px;
-  padding: 1em 2em;
-  margin-left: 3em;
-  margin-bottom: 3em;
-  color: #000000;
-}
-.btn_cancel:hover {
-  background: rgb(172, 46, 46);
-  color: #fff;
-}
-.btn_add {
-  background: rgb(2, 70, 19);
-  border-radius: 40px;
-  border: none;
-  padding: 0.8em 3em;
-  color: white;
-  cursor: pointer;
-  margin-top: 1.5em;
-  margin-right: 1em;
-}
-.btn_add:hover {
-  background: linear-gradient(
-      180deg,
-      rgba(255, 255, 255, 0.6) 0%,
-      rgba(255, 255, 255, 0) 100%
-    ),
-    rgb(2, 70, 19);
-}
 </style>

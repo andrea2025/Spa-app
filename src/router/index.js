@@ -5,7 +5,6 @@ import Register from '../views/Register.vue'
 import Login from '../views/Login.vue'
 import Booking from '../components/Booking.vue'
 import BookingSum from '../views/BookingSum.vue'
-import mainPage from  '../components/mainPage.vue'
 import footer from  '../components/footer.vue'
 
 
@@ -29,11 +28,6 @@ const routes = [
   // },
 
   
-  {
-    path: '/about',
-    name: 'mainPage',
-    component: mainPage
-  },
   {
     path: '/register',
     name: 'register',
@@ -59,7 +53,7 @@ const routes = [
     component: BookingSum
   },
   {
-    path: '/logout',
+    path: '/footer',
     name: 'footer',
     component: footer
   }

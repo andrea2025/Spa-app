@@ -1,21 +1,6 @@
 <template>
   <div class="mainPage">
-     
-    <div class="About_page d-flex justify-content-around">
-      <div>
-        <img src="../assets/images/about.jpg" alt="Spa-face" />
-      </div>
-      <div class="about_text">
-        <h2>About   <span>Andr@ </span></h2> <hr>
-        <p>
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris
-          aliquam massa quis felis tempus, et elementum ipsum iaculis. Ut nec
-          tortor eget dolor finibus fermentum ut nec orci. Vestibulum tempor
-          neque sed sapien dapibus, vitae facilisis erat pharetra. Aenean et
-          dictum ante.Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris aliquam massa quis felis tempus, et elementum ipsum iaculis. Ut nec tortor eget dolor finibus fermentum ut nec orci. Vestibulum tempor neque sed sapien dapibus, vitae facilisis erat pharetra. Aenean et dictum ante.
-        </p>
-      </div>
-    </div>
+   
      <div>
             <router-link to="/"><i class="fa fa-caret-up" aria-hidden="true"></i></router-link> 
         </div> 

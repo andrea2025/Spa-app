@@ -4,20 +4,23 @@
     <div class="bg_img">
    <NavBar/>
     </div>
-   
+
+    <div class="response" :class="[apiResponse ? apiResponse.type: '']" v-show="showResponse">
+      {{ apiResponse.message}}
+    </div>
     <form  @submit.prevent="sign" action="/register" method="post">
-     <h1>Sign Up</h1>
-      <div class="form-group form1">
-        <label for="fullname">Fullname:</label>
-        <input type="name" name="name" class="form-control" placeholder="Enter name" v-model="userRegister.name" required/>
+     <h1>Register</h1>
+      <div class="form1">
+        <label for="fullname">Fullname:</label><br>
+        <input type="name" name="name"  placeholder="Enter name" v-model="userRegister.name" required/>
       </div>
-      <div class="form-group form1">
-        <label for="Email" class=" form_email">Email:</label>
-        <input type="email" name="email" class="form-control " placeholder="Enter email" v-model="userRegister.email" required/>
+      <div class="form1">
+        <label for="Email" class=" form_email">Email:</label><br>
+        <input type="email" name="email" placeholder="Enter email" v-model="userRegister.email" required/>
       </div>
-      <div class="form-group form1">
-        <label for="password">Password:</label>
-        <input type="password"  name="password" class="form-control" placeholder="Password" v-model="userRegister.password" required/>
+      <div class="form1">
+        <label for="password">Password:</label><br>
+        <input type="password"  name="password" placeholder="Password" v-model="userRegister.password" required/>
       </div>
       <p class="form1">
         Already have an Account?
@@ -30,7 +33,7 @@
 
 <script>
 import NavBar from '@/components/NavBar.vue'
-import {mapActions} from 'vuex'
+import {mapActions,mapGetters} from 'vuex'
 export default {
   name: "register",
   components:{
@@ -42,8 +45,12 @@ export default {
         name: '',
         email: '',
         password:''
-      }
+      },
+       showResponse: false
     }
+  },
+  computed:{
+    ...mapGetters(["apiResponse"])
   },
 methods:  {
   ...mapActions([
@@ -52,26 +59,33 @@ methods:  {
   sign(){
     this.Register(this.userRegister)
   }
+},
+// watch: {
+    
+//     apiResponse(val) {
+//       this.showResponse = val.message != '' ? true : false
+//       if(val.type == 'success') {
+//         setTimeout(()=> {this.$router.push({name: 'login'})}, 1000)
+//       }
+//     }
+// }
 }
-};
+
 </script>
 
 <style scoped>
 * {
   background: #eeeaea;
+  box-sizing: border-box;
 }
 .bg_img{
   background-image: url("../assets/images/bg1.jpg");
    min-height: calc(100vh - 100px);
         background-size: cover;
 }
-form {
-  width: 60%;
-  margin: auto ;
-  padding: 50px;
-}
+
 .form1{
-  margin-left: 13em;
+  margin: 1rem 0;
 }
 button {
   background: rgb(2, 70, 19);
@@ -83,29 +97,31 @@ button {
    margin-right: 1.5em;
 }
 button:hover{
- background: linear-gradient(
-      180deg,
-      rgba(255, 255, 255, 0.6) 0%,
-      rgba(255, 255, 255, 0) 100%
-    ),
-    rgb(2, 70, 19);
+ color:rgb(2, 70, 19);
+ background: transparent;
+ border: 2px solid black;
 }
-label {
+.form1 label {
   font-size: 15px;
   font-weight: 700;
-  padding-right: 31em;
+
 }
-.form_email{
-  padding-right: 33em;
-}
-input {
-  width: 50%;
-  opacity: 0.7;
+
+ .form1 input {
+width: 30%;
+  padding: 0.5rem;
   border: 2px solid #000000;
-   padding: 1rem;
   border-radius: 200px;
-}
+  font-size: 16px;
+  margin-top: 0.5rem;
+  display: inline-block;
+ }
 p {
-  text-align: left;
+  text-align: center;
+}
+@media screen and (max-width: 768px) {
+  .form1 input{
+    width:100%;
+  }
 }
 </style>

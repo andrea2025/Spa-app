@@ -10,10 +10,7 @@
             <router-link to="/">Home</router-link>
             </li>
             <li class="nav_list_item">
-            <router-link to="/about">About</router-link>
-            </li>
-            <li>
-              <router-link to="/bookingSum">Bookings</router-link>
+            <router-link to="/bookingSum">Bookings</router-link>
             </li>
       </ul>
       <ul v-if="!userlogin" class="d-flex mx-2">
@@ -66,9 +63,6 @@ h1 {
   align-items: center;
   font-weight: bolder;
 }
-/* .navigation  .router-link-exact-active {
-    color:#fff;
-} */
 .top_bar1 span {
   color: #fff;
 }
@@ -96,4 +90,9 @@ li{
   background: linear-gradient(180deg, #c4a0a0 0%, rgba(255, 255, 255, 0) 100%),
     #ea3cce;
 }
+ @media screen and (max-width: 768px) {
+  .nav_auth{
+    display: flex;
+  }
+  }
 </style>
