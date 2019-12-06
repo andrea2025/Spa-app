@@ -60,9 +60,13 @@ export default new Vuex.Store({
           message: response.data.message
         };
         commit("setResponse", responseObject);
-        router.push("/login");
         console.log(responseObject);
       } catch (error) {
+        let responseObject = {
+          type:'failed',
+          message:error.response.data.message
+        }
+        commit("setResponse", responseObject);
         console.log(error.response);
       }
     },
@@ -83,11 +87,11 @@ export default new Vuex.Store({
         localStorage.setItem("access_token", token);
         commit("getToken", token);
         router.push("/booking");
-        //here//
+        
       } catch (error) {
         let responseObject = {
           type:'failed',
-          message:error.message.data.message
+          message:error.response.data.message
         }
         commit("setResponse", responseObject);
         console.log(error.response);

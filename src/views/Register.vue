@@ -4,10 +4,6 @@
     <div class="bg_img">
    <NavBar/>
     </div>
-
-    <div class="response">
-      {{ apiResponse.message}}
-    </div>
     <form  @submit.prevent="sign" action="/register" method="post">
      <h1>Register</h1>
       <div class="form1">
@@ -22,6 +18,10 @@
         <label for="password">Password:</label><br>
         <input type="password"  name="password" placeholder="Password" v-model="userRegister.password" required/>
       </div>
+      
+    <div class="response">
+      {{ apiResponse.message}}
+    </div>
       <p class="form1">
         Already have an Account?
         <router-link :to="{ name: 'login' }">Login</router-link>
@@ -60,15 +60,16 @@ methods:  {
     this.Register(this.userRegister)
   }
 },
-// watch: {
+watch: {
     
-//     apiResponse(val) {
-//       this.showResponse = val.message != '' ? true : false
-//       if(val.type == 'success') {
-//         setTimeout(()=> {this.$router.push({name: 'login'})}, 1000)
-//       }
-//     }
-// }
+    apiResponse(val) {
+     
+      if(val.type == 'success') {
+        setTimeout(()=> {this.$router.push({name: 'login'})}, 5000)
+      }
+    }
+    }
+
 }
 
 </script>
