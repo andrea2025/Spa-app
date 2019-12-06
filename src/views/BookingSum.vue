@@ -4,20 +4,20 @@
     <NavBar/>
     
     <h1>{{header}}</h1>
-    <table>
+    <table  class="table table-dark">
       <tr>
 
-        <th>Name</th>
-        <th>Phone number</th>
-        <th>Email</th>
-        <th>Date</th>
-        <th>Time</th>
-        <th>Treatment</th>
-        <th>Message</th>
-        <th>Edit Appointement</th>
-        <th>Delete Appointment</th>
+        <th scope="col">Name</th>
+        <th scope="col">Phone number</th>
+        <th scope="col">Email</th>
+        <th scope="col">Date</th>
+        <th scope="col">Time</th>
+        <th scope="col">Treatment</th>
+        <th scope="col">Message</th>
+        <th scope="col">Edit Appointement</th>
+        <th scope="col">Delete Appointment</th>
       </tr>
-      <tr v-for= "item in setbooking" :key="item._id" >
+      <tr v-for= "item in setbooking" :key="item._id"  scope="row">
         <td>{{item.name}}</td>
         <td>{{item.number}}</td>
         <td>{{item.email}}</td>
@@ -68,18 +68,7 @@ export default {
 
 </script>
 <style scoped>
-table {
-  font-family: arial, sans-serif;
-  border-collapse: collapse;
-  width: 100%;
-  background: rgba(216, 212, 209, 0.096);
-}
 
-td, th {
- border-collapse: collapse;
-  text-align: left;
-  padding: 4px;
-}
 
 i {
   font-size: 4em;
@@ -89,7 +78,7 @@ i {
   background: #ffffff;
   border: 2px solid #000000;
   border-radius: 20px;
-  padding: 1em 2em;
+  padding: 1rem 1.5rem;
   margin-left: 3em;
   margin-bottom: 3em;
   color: #000000;
@@ -104,7 +93,7 @@ i {
   background: #ffffff;
   border: 2px solid #000000;
   border-radius: 20px;
-  padding: 1em 2em;
+  padding: 1rem 1.5rem;
   margin-left: 3em;
   margin-bottom: 3em;
   color: #000000;

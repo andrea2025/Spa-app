@@ -28,18 +28,19 @@
       </div>
     </div>
     </div>
-   <footer/>
+   <footer1/>
   </div>
 </template>
 
 <script>
 import NavBar from '@/components/NavBar.vue'
-//import footer from '@/components/footer'
+import footer1 from '@/components/footer1.vue'
 
 export default {
   name: 'home',
   components: {
-  NavBar
+  NavBar,
+  footer1
   }
 }
 </script>

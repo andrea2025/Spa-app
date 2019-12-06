@@ -132,7 +132,7 @@ export default new Vuex.Store({
       }
     },
 
-    async delBookings({ commit, id}) {
+    async delBookings({ commit} ,id) {
      
       try {
         axios.defaults.headers.common["Authorization"] =

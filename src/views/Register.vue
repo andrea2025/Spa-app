@@ -5,7 +5,7 @@
    <NavBar/>
     </div>
 
-    <div class="response" :class="[apiResponse ? apiResponse.type: '']" v-show="showResponse">
+    <div class="response">
       {{ apiResponse.message}}
     </div>
     <form  @submit.prevent="sign" action="/register" method="post">
@@ -46,7 +46,7 @@ export default {
         email: '',
         password:''
       },
-       showResponse: false
+  
     }
   },
   computed:{
