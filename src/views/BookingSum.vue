@@ -1,101 +1,157 @@
 <template>
-
   <div>
-    <NavBar/>
-    
-    <h1>{{header}}</h1>
-    <table  class="table table-dark">
-      <tr>
+    <NavBar />
 
-        <th scope="col">Name</th>
-        <th scope="col">Phone number</th>
-        <th scope="col">Email</th>
-        <th scope="col">Date</th>
-        <th scope="col">Time</th>
-        <th scope="col">Treatment</th>
-        <th scope="col">Message</th>
-        <th scope="col">Edit Appointement</th>
-        <th scope="col">Delete Appointment</th>
-      </tr>
-      <tr v-for= "item in setbooking" :key="item._id"  scope="row">
-        <td>{{item.name}}</td>
-        <td>{{item.number}}</td>
-        <td>{{item.email}}</td>
-        <td>{{item.date}}</td>
-        <td>{{item.time}}</td>
-        <td>{{item.treatment}}</td>
-        <td>{{item.text}}</td>
-        <td>
-          
-          <button type="submit"  @click.prevent= "edit" class="btn_edit">Edit</button></td>
-        <td><button type="submit" @click.prevent="delBookings(item._id)" class="btn_cancel">
-                Cancel
-              </button></td>
-      </tr>
-    </table>
-    <div>
+    <h1>{{ header }}</h1>
+    <div class="grid_flow" >
+      <div v-for="item in setbooking" :key="item._id">
+        <p> Name: {{ item.name }}</p>
+        <p>Phone number: {{ item.number }}</p>
+        <p>Email: {{ item.email }}</p>
+        <p>Date: {{ item.date }}</p>
+        <p>Time: {{ item.time }}</p>
+        <p>Treatment: {{ item.treatment }}</p>
+        <p>Comment: {{ item.msg }}</p>
+        <div class="d-flex justify-content-center">
+  
+
+  <i aria-hidden="true"   data-toggle="modal"  data-target="#exampleModalCenter" class="btn_edit fa fa-pencil-square-o mr-4"></i>
+<div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog"  aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Edit Appointment</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div class="form-group">
+            <label for="date">Date</label>
+            <input
+              type="date"
+              name="date"
+              value="date"
+              class="form-control"
+              placeholder="date" v-model="editUser.date" />
+          </div>
+          <div class="form-group">
+            <label for="time">Time</label>
+            <input
+              type="time"
+              name="time"
+              value="time"
+              class="form-control"
+              placeholder="time" v-model="editUser.time"/>
+          </div>
+          <div>
+            <label for="sect">Treatment Selection</label>
+            <select
+              name="treatment"
+              class="form-control"
+              aria-placeholder="Spa treatment" v-model="editUser.treatment">
+              <option value="massage">Massage</option>
+              <option value="body treatment">body Treatment</option>
+              <option value="facials">Facials</option>
+              <option value="nail">nail removal</option>
+              <option value="medical">Medical Treatment</option>
+            </select>
+          </div>
+          <div>
+            <label for="msg">Message</label>
+            <textarea
+              name="text"
+              cols="10"
+              rows="5"
+              value="text"
+              class="form-control"
+              placeholder="drop your treatment specification"
+              v-model="editUser.msg">
+            </textarea>
+          </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button type="button" @click.prevent="edit" class="btn btn-primary">Save changes</button>
+      </div>
+    </div>
+  </div>
+</div>
+      <i
+            type="submit"
+            @click.prevent="delBookings(item._id)"
+            class="btn_cancel fa fa-trash" aria-hidden="true"
+          ></i>
         </div>
+      
+      </div>
+    </div>
+
+    <div></div>
+    <footer1 />
   </div>
 </template>
 <script>
-import NavBar from '@/components/NavBar.vue'
-import {mapActions, mapGetters} from 'vuex'
+import footer1 from "@/components/footer1.vue";
+import NavBar from "@/components/NavBar.vue";
+import { mapActions, mapGetters } from "vuex";
 export default {
-  name:'bookingSum',
-  components:{
-    NavBar
+  name: "bookingSum",
+  components: {
+    NavBar,
+    footer1
   },
-  data(){
-    return{
-      header:'Booking Appointments'
+  data() {
+    return {
+      header: "Booking Appointments",
+      editUser:{
+        date:'',
+        time:'',
+        treatment:'',
+        msg:''
+      }
+    };
+  },
+  computed: {
+    ...mapGetters(["setbooking"])
+  },
+  created() {
+    this.BookingSum();
+  },
+  methods: {
+    ...mapActions(["BookingSum", "delBookings", 'updateBooking']),
+    edit(){
+    this.updateBooking(this.editUser)
     }
-  },
-  computed:{
-    ...mapGetters(['setbooking'])
-     
-  },
-  created(){
-    this.BookingSum()
-  },
-  methods:{
-    ...mapActions(['BookingSum' ,'delBookings'])
- 
   }
-  }
- 
-
-
-
+};
 </script>
 <style scoped>
-
-
+.grid_flow{
+  display: grid;
+  grid-template-columns: auto auto auto;
+  grid-gap: 20px;
+}
 i {
-  font-size: 4em;
-  padding-bottom: 3em;
+  font-size: 3em;
+
 }
 .btn_edit {
   background: #ffffff;
-  border: 2px solid #000000;
   border-radius: 20px;
-  padding: 1rem 1.5rem;
-  margin-left: 3em;
-  margin-bottom: 3em;
+  padding: 0.3rem; 
   color: #000000;
   cursor: pointer;
 }
 .btn_edit:hover {
-  color:#fff;
- background:rgb(2, 70, 19);
- border: 2px solid black;
+  color: #fff;
+  background: rgb(2, 70, 19);
+  border: 2px solid black;
 }
 .btn_cancel {
   background: #ffffff;
-  border: 2px solid #000000;
-  border-radius: 20px;
-  padding: 1rem 1.5rem;
-  margin-left: 3em;
-  margin-bottom: 3em;
+  border-radius: 30px;
+  padding: 0.3rem;
   color: #000000;
   cursor: pointer;
 }
@@ -103,33 +159,12 @@ i {
   background: rgb(172, 46, 46);
   color: #fff;
 }
-.btn_add {
-  background: rgb(2, 70, 19);
-  border-radius: 40px;
-  border: none;
-  padding: 0.8em 3em;
-  color: white;
-  cursor: pointer;
-  margin-top: 1.5em;
-  margin-right: 1em;
-}
-.btn_add:hover {
-  background: linear-gradient(
-      180deg,
-      rgba(255, 255, 255, 0.6) 0%,
-      rgba(255, 255, 255, 0) 100%
-    ),
-    rgb(2, 70, 19);
-}
-@media screen and (max-width: 768px) {
-  table {
-  font-family: arial, sans-serif;
-  border-collapse: collapse;
-  width: 50%;
-}
 
-td, th {
-  padding: 3px;
+@media screen and (max-width: 768px) {
+.grid_flow{
+  display: grid;
+  grid-template-columns:repeat(2, 1fr);
+  grid-gap: 20px;
 }
 }
 </style>

@@ -1,11 +1,10 @@
 <template>
   <div class="form_bar">
-    <NavBar/>
+    <NavBar />
     <div class="d-flex justify-content-between pb-3">
       <div>
-       
         <form @submit.prevent="booked" action="/booking" method="post">
-         <h1>Booking Enquiry</h1>
+          <h1>Booking Enquiry</h1>
           <div class="form-group ">
             <label for="name"> Fullname:</label>
             <input
@@ -67,10 +66,10 @@
             <label for="sect">Treatment Selection</label>
             <select
               name="treatment"
-              class="form-control" aria-placeholder="Spa treatment"
+              class="form-control"
+              aria-placeholder="Spa treatment"
               v-model="user.treatment"
             >
-              
               <option value="massage">Massage</option>
               <option value="body treatment">body Treatment</option>
               <option value="facials">Facials</option>
@@ -88,10 +87,9 @@
               value="text"
               class="form-control"
               placeholder="drop your treatment specification"
-              v-model="user.text"
+              v-model="user.msg"
             >
-              </textarea
-            >
+            </textarea>
           </div>
           <button type="submit">Book appointment</button>
         </form>
@@ -100,11 +98,11 @@
   </div>
 </template>
 <script>
-import NavBar from '@/components/NavBar.vue'
-import { mapActions} from "vuex";
+import NavBar from "@/components/NavBar.vue";
+import { mapActions } from "vuex";
 export default {
   name: "booking",
-  components:{
+  components: {
     NavBar
   },
   data() {
@@ -116,33 +114,29 @@ export default {
         date: "",
         time: "",
         treatment: "",
-        text: ""
-      },
-      
+        msg: ""
+      }
     };
   },
 
   methods: {
-    ...mapActions(["Booking" ,"BookingSum"]),
+    ...mapActions(["Booking", "BookingSum"]),
     booked() {
       this.Booking(this.user);
-     
-      
     }
   }
 };
 </script>
 
 <style scoped>
-*{
+* {
   box-sizing: border-box;
-  display:block;
+  display: block;
   margin: 1rem auto;
-   
 }
-.form_bar{
-background-image: url('../assets/images/bg1.jpg');
-   color:#000;
+.form_bar {
+  background-image: url("../assets/images/bg1.jpg");
+  color: #000;
 }
 
 form {
@@ -158,16 +152,14 @@ button {
   color: white;
   cursor: pointer;
   margin: 1em auto;
-  
 }
-label{
+label {
   text-align: left;
-  font-weight:bolder;
+  font-weight: bolder;
 }
-button:hover{
- color:white;
- background: transparent;
- border: 2px solid black;
+button:hover {
+  color: white;
+  background: transparent;
+  border: 2px solid black;
 }
-
 </style>

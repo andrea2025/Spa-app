@@ -19,7 +19,7 @@ export default new Vuex.Store({
     userlogin(state) {
       return state.token !== null;
     },
-    setbooking: state => state.bookings 
+    setbooking: state => state.bookings
   },
 
   mutations: {
@@ -36,16 +36,20 @@ export default new Vuex.Store({
       state.token = token;
     },
     destroyToken(state) {
-      state.token = null;  
+      state.token = null;
     },
-    setbookings (state, bookings) {
+    setbookings(state, bookings) {
       state.bookings = bookings;
-      }, 
-      deleteBooking(state, id) {
-        state.bookings = state.bookings.filter(function(item) {
-         return  item._id !== id;
-      })
-    }
+    },
+    deleteBooking(state, id) {
+      state.bookings = state.bookings.filter(function(item) {
+        return item._id !== id;
+      });
+    },
+    updateBooking(state, id) {
+      const index = state.bookings.findIndex(item => item._id !== id)
+      state.bookings.splice(index, 1)
+    },
   },
   actions: {
     async Register({ commit }, userData) {
@@ -63,9 +67,9 @@ export default new Vuex.Store({
         console.log(responseObject);
       } catch (error) {
         let responseObject = {
-          type:'failed',
-          message:error.response.data.message
-        }
+          type: "failed",
+          message: error.response.data.message
+        };
         commit("setResponse", responseObject);
         console.log(error.response);
       }
@@ -87,17 +91,15 @@ export default new Vuex.Store({
         localStorage.setItem("access_token", token);
         commit("getToken", token);
         router.push("/booking");
-        
       } catch (error) {
         let responseObject = {
-          type:'failed',
-          message:error.response.data.message
-        }
+          type: "failed",
+          message: error.response.data.message
+        };
         commit("setResponse", responseObject);
         console.log(error.response);
       }
     },
-      
 
     async Booking({ commit }, userData) {
       try {
@@ -113,8 +115,8 @@ export default new Vuex.Store({
           type: "success",
           message: response.data.message
         };
-    
-        router.push("/bookingSum")
+
+        router.push("/bookingSum");
         commit("setResponse", responseObject);
       } catch (error) {
         console.log(error.response);
@@ -124,42 +126,45 @@ export default new Vuex.Store({
       localStorage.removeItem("access_token");
       commit("destroyToken"), router.push("/");
     },
-   
 
-    async BookingSum({ commit}) {
-     
+    async BookingSum({ commit }) {
       try {
-        console.log('start request');
+        console.log("start request");
         const response = await axios.get("http://localhost:3000/booking/all");
         console.log(response);
-      
-        commit('setbookings', response.data.data)
-        console.log("response", response)
-         //router.push("/bookingSum")
-  
+
+        commit("setbookings", response.data.data);
+        console.log("response", response);
+        //router.push("/bookingSum")
       } catch (error) {
         console.log(error.response.data.message);
       }
     },
 
-    async delBookings({ commit} ,id) {
-     
+    async delBookings({ commit }, id) {
       try {
         axios.defaults.headers.common["Authorization"] =
-        "Bearer " + this.state.token;
-        const response = await axios.delete(`http://localhost:3000/booking/${id}`);
+          "Bearer " + this.state.token;
+        const response = await axios.delete(
+          `http://localhost:3000/booking/${id}`
+        );
         console.log(response);
-      
-        commit('deleteBooking', id)
-        console.log("response", response)
-  
+
+        commit("deleteBooking", id);
+        console.log("response", response);
       } catch (error) {
         console.log(error.response);
       }
+    },
+    async updateBooking({commit}, id) {
+      try{
+    const response = axios.patch(`http://localhost:3000/booking/${id}`)
+        commit('updateBooking', response.data, id)
+      }catch(error){
+          console.log(error.response)
     }
+    }
+    },
 
-    
-  },
   modules: {}
 });
- 

@@ -3,15 +3,16 @@
     <nav class="navigation">
       <div class="top_bar1">
         <router-link to="/"
-          ><h1>Andr@ <span> spa</span></h1></router-link>
+          ><h1>Andr@ <span> spa</span></h1></router-link
+        >
       </div>
       <ul class="nav_list">
-            <li class="nav_list_item item1">
-            <router-link to="/">Home</router-link>
-            </li>
-            <li class="nav_list_item">
-            <router-link to="/bookingSum">Bookings</router-link>
-            </li>
+        <li class="nav_list_item item1">
+          <router-link to="/">Home</router-link>
+        </li>
+        <li class="nav_list_item">
+          <router-link to="/bookingSum">Bookings</router-link>
+        </li>
       </ul>
       <ul v-if="!userlogin" class="d-flex mx-2">
         <li class="nav_auth auth">
@@ -28,19 +29,17 @@
   </div>
 </template>
 <script>
-import {mapGetters,mapActions} from 'vuex'
+import { mapGetters, mapActions } from "vuex";
 export default {
   name: "NavBar",
-  computed:{
-      ...mapGetters(['userlogin'])
+  computed: {
+    ...mapGetters(["userlogin"])
   },
-   methods: {
-    ...mapActions(['logout']),
-    signOut(){
-      this.logout()
-      
+  methods: {
+    ...mapActions(["logout"]),
+    signOut() {
+      this.logout();
     }
-
   }
 };
 </script>
@@ -72,9 +71,10 @@ h1 {
 }
 .nav_list_item {
   margin: 0 5em;
+  font-size: 20px;
 }
-li{
-    list-style: none;
+li {
+  list-style: none;
 }
 .auth {
   margin-right: 7em;
@@ -82,7 +82,7 @@ li{
 .nav_auth {
   background: linear-gradient(180deg, rgba(255, 255, 255, 0.2) 100%), #ea3cce;
   color: #fff;
-  cursor:pointer;
+  cursor: pointer;
   border-radius: 20px;
   padding: 0.8em 1.5em;
 }
@@ -90,9 +90,9 @@ li{
   background: linear-gradient(180deg, #c4a0a0 0%, rgba(255, 255, 255, 0) 100%),
     #ea3cce;
 }
- @media screen and (max-width: 768px) {
-  .nav_auth{
+@media screen and (max-width: 768px) {
+  .nav_auth {
     display: flex;
   }
-  }
+}
 </style>
