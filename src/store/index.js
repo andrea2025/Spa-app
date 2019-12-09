@@ -45,11 +45,8 @@ export default new Vuex.Store({
       state.bookings = state.bookings.filter(function(item) {
         return item._id !== id;
       });
-    },
-    updateBooking(state, id) {
-      const index = state.bookings.findIndex(item => item._id !== id)
-      state.bookings.splice(index, 1)
-    },
+    }
+    
   },
   actions: {
     async Register({ commit }, userData) {
@@ -124,6 +121,7 @@ export default new Vuex.Store({
     },
     logout({ commit }) {
       localStorage.removeItem("access_token");
+      console.log(this.destroytoken)
       commit("destroyToken"), router.push("/");
     },
 
@@ -134,8 +132,7 @@ export default new Vuex.Store({
         console.log(response);
 
         commit("setbookings", response.data.data);
-        console.log("response", response);
-        //router.push("/bookingSum")
+        console.log("response", response)
       } catch (error) {
         console.log(error.response.data.message);
       }
@@ -156,14 +153,17 @@ export default new Vuex.Store({
         console.log(error.response);
       }
     },
-    async updateBooking({commit}, id) {
-      try{
-    const response = axios.patch(`http://localhost:3000/booking/${id}`)
-        commit('updateBooking', response.data, id)
-      }catch(error){
-          console.log(error.response)
-    }
-    }
+    // async updateBooking({commit}, id) {
+    //   try{
+   
+    // const response = axios.put(`http://localhost:3000/booking/${id}`);
+    //     commit('updateBooking', id)
+    //     console.log('response',response);
+    //     router.push('/bookingSum')
+    //   }catch(error){
+    //       console.log(error.response.data.message)
+    // }
+    // }
     },
 
   modules: {}

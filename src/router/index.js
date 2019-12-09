@@ -5,6 +5,7 @@ import Register from '../views/Register.vue'
 import Login from '../views/Login.vue'
 import Booking from '../components/Booking.vue'
 import BookingSum from '../views/BookingSum.vue'
+import edit from '../components/edit.vue'
 
 
 
@@ -44,6 +45,11 @@ const routes = [
     name: 'bookingSum',
     component: BookingSum
   },
+  {
+    path: '/edit',
+    name: 'edit',
+    component: edit,
+  }
   
 ]
 

@@ -55,10 +55,14 @@ export default {
 .side_text h2{
   color:black;
   font-size: 36px;
+  line-height: 2em;
+  word-spacing: 5px;
+  
+
 }
 .side_text{
-  width: 75%;
-  padding-left: 40em;
+   
+   margin: 0 auto;
   padding-top: 9rem;
 }
 .side_text button {
@@ -101,8 +105,14 @@ hr {
  @media screen and (max-width: 768px) {
   .top_bar{
     background-position: center;
-    min-height: calc(100vh - 80px);
   }
+ .side_text{
+     margin: 0 auto;
+   }
   
+  img {
+    display: none;
+  }
 }
+ 
 </style>

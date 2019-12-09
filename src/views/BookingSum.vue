@@ -4,7 +4,7 @@
 
     <h1>{{ header }}</h1>
     <div class="grid_flow" >
-      <div v-for="item in setbooking" :key="item._id">
+      <div v-for="item in setbooking" :key="item._id" class="booking_id">
         <p> Name: {{ item.name }}</p>
         <p>Phone number: {{ item.number }}</p>
         <p>Email: {{ item.email }}</p>
@@ -13,81 +13,21 @@
         <p>Treatment: {{ item.treatment }}</p>
         <p>Comment: {{ item.msg }}</p>
         <div class="d-flex justify-content-center">
-  
-
-  <i aria-hidden="true"   data-toggle="modal"  data-target="#exampleModalCenter" class="btn_edit fa fa-pencil-square-o mr-4"></i>
-<div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog"  aria-hidden="true">
-  <div class="modal-dialog modal-dialog-centered" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title">Edit Appointment</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body">
-        <div class="form-group">
-            <label for="date">Date</label>
-            <input
-              type="date"
-              name="date"
-              value="date"
-              class="form-control"
-              placeholder="date" v-model="editUser.date" />
-          </div>
-          <div class="form-group">
-            <label for="time">Time</label>
-            <input
-              type="time"
-              name="time"
-              value="time"
-              class="form-control"
-              placeholder="time" v-model="editUser.time"/>
-          </div>
-          <div>
-            <label for="sect">Treatment Selection</label>
-            <select
-              name="treatment"
-              class="form-control"
-              aria-placeholder="Spa treatment" v-model="editUser.treatment">
-              <option value="massage">Massage</option>
-              <option value="body treatment">body Treatment</option>
-              <option value="facials">Facials</option>
-              <option value="nail">nail removal</option>
-              <option value="medical">Medical Treatment</option>
-            </select>
-          </div>
-          <div>
-            <label for="msg">Message</label>
-            <textarea
-              name="text"
-              cols="10"
-              rows="5"
-              value="text"
-              class="form-control"
-              placeholder="drop your treatment specification"
-              v-model="editUser.msg">
-            </textarea>
-          </div>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-        <button type="button" @click.prevent="edit" class="btn btn-primary">Save changes</button>
-      </div>
-    </div>
-  </div>
-</div>
+      <router-link :to="{ name: 'edit',params:{id:item._id} }"> 
+        <i aria-hidden="true"  class="btn_edit fa fa-pencil-square-o mr-4"></i>
+        </router-link>
       <i
             type="submit"
             @click.prevent="delBookings(item._id)"
             class="btn_cancel fa fa-trash" aria-hidden="true"
           ></i>
         </div>
+        </div>
       
-      </div>
+      
     </div>
 
-    <div></div>
+   
     <footer1 />
   </div>
 </template>
@@ -104,12 +44,7 @@ export default {
   data() {
     return {
       header: "Booking Appointments",
-      editUser:{
-        date:'',
-        time:'',
-        treatment:'',
-        msg:''
-      }
+      
     };
   },
   computed: {
@@ -118,11 +53,11 @@ export default {
   created() {
     this.BookingSum();
   },
+  mounted(){
+    this.BookingSum();
+  },
   methods: {
-    ...mapActions(["BookingSum", "delBookings", 'updateBooking']),
-    edit(){
-    this.updateBooking(this.editUser)
-    }
+    ...mapActions(["BookingSum", "delBookings"]),
   }
 };
 </script>
@@ -131,10 +66,25 @@ export default {
   display: grid;
   grid-template-columns: auto auto auto;
   grid-gap: 20px;
+  
 }
 i {
   font-size: 3em;
 
+}
+.booking_id{
+  background-color: rosybrown;
+  background-image: url("../assets/images/images.jpg");
+  background-size: cover;
+  background-repeat: no-repeat;
+  padding: 20px 0;
+  border-radius:20px;
+  color: #fff;
+  box-shadow: 10px 10px 8px #888888;
+}
+p{
+  font-size: 18px;
+  font-weight: 600;
 }
 .btn_edit {
   background: #ffffff;

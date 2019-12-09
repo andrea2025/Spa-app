@@ -140,9 +140,8 @@ export default {
 }
 
 form {
-  width: 150%;
-  height: auto;
-  padding: 20px;
+
+  margin: 0 auto;
 }
 button {
   background: rgb(2, 70, 19);

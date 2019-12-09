@@ -6,25 +6,27 @@
           ><h1>Andr@ <span> spa</span></h1></router-link
         >
       </div>
-      <ul class="nav_list">
-        <li class="nav_list_item item1">
-          <router-link to="/">Home</router-link>
-        </li>
-        <li class="nav_list_item">
-          <router-link to="/bookingSum">Bookings</router-link>
-        </li>
-      </ul>
-      <ul v-if="!userlogin" class="d-flex mx-2">
-        <li class="nav_auth auth">
-          <router-link :to="{ name: 'register' }"> Register</router-link>
-        </li>
-        <li class="nav_auth">
-          <router-link :to="{ name: 'login' }"> Login </router-link>
-        </li>
-      </ul>
-      <ul class="nav_auth" v-else>
-        <a href="#" @click="signOut">Logout</a>
-      </ul>
+      <div>
+        <ul class="nav_list">
+          <li class="nav_list_item item1">
+            <router-link to="/">Home</router-link>
+          </li>
+          <li class="nav_list_item">
+            <router-link to="/bookingSum">Bookings</router-link>
+          </li>
+        </ul>
+        <ul v-if="!userlogin" class="d-flex mx-2">
+          <li class="nav_auth auth">
+            <router-link :to="{ name: 'register' }"> Register</router-link>
+          </li>
+          <li class="nav_auth">
+            <router-link :to="{ name: 'login' }"> Login </router-link>
+          </li>
+        </ul>
+        <ul class="nav_auth" v-else>
+          <a href="" @click="signOut">Logout</a>
+        </ul>
+      </div>
     </nav>
   </div>
 </template>
@@ -65,6 +67,9 @@ h1 {
 .top_bar1 span {
   color: #fff;
 }
+.nav_reg {
+  display: flex;
+}
 .nav_list {
   display: flex;
   list-style: none;
@@ -84,15 +89,15 @@ li {
   color: #fff;
   cursor: pointer;
   border-radius: 20px;
-  padding: 0.8em 1.5em;
+  padding: 0.8em;
 }
 .nav_auth:hover {
   background: linear-gradient(180deg, #c4a0a0 0%, rgba(255, 255, 255, 0) 100%),
     #ea3cce;
 }
-@media screen and (max-width: 768px) {
+/* @media screen and (max-width: 768px) {
   .nav_auth {
     display: flex;
   }
-}
+} */
 </style>
