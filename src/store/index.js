@@ -11,11 +11,16 @@ export default new Vuex.Store({
       type: "",
       message: ""
     },
+    responseLog: {
+      type: "",
+      message: ""
+    },
     token: localStorage.getItem("access_token") || null,
     bookings: []
   },
   getters: {
     apiResponse: state => state.response,
+    apiResponseLog: state => state.responselog,
     userlogin(state) {
       return state.token !== null;
     },
@@ -29,6 +34,13 @@ export default new Vuex.Store({
         message: payload.message
       };
     },
+    setResponseLogin: (state, payload) => {
+      state.responseLog = {
+        type: payload.type,
+        message: payload.message
+      };
+    },
+  
     signOut: (state, payload) => {
       state.token = payload;
     },
@@ -48,6 +60,7 @@ export default new Vuex.Store({
     }
     
   },
+
   actions: {
     async Register({ commit }, userData) {
       try {
@@ -87,13 +100,13 @@ export default new Vuex.Store({
         const token = response.data.token;
         localStorage.setItem("access_token", token);
         commit("getToken", token);
-        router.push("/booking");
       } catch (error) {
         let responseObject = {
           type: "failed",
           message: error.response.data.message
         };
-        commit("setResponse", responseObject);
+        console.log('responseObject')
+        commit("setResponseLogin", responseObject);
         console.log(error.response);
       }
     },

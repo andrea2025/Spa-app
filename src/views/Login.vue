@@ -24,6 +24,7 @@
           v-model="userLogin.password"
         />
       </div>
+       <div class="response">{{ apiResponse.message }}</div>
       <p>
         Don’t have an account?
         <router-link :to="{ name: 'register' }">Sign Up</router-link>
@@ -37,7 +38,7 @@
 <script>
 import footer1 from "@/components/footer1.vue";
 import NavBar from "@/components/NavBar.vue";
-import { mapActions } from "vuex";
+import { mapActions,mapGetters } from "vuex";
 export default {
   name: "login",
   components: {
@@ -52,12 +53,25 @@ export default {
       }
     };
   },
+  computed:{
+    ...mapGetters(['apiResponse'])
+  },
   methods: {
     ...mapActions(["Login"]),
     log() {
       this.Login(this.userLogin);
     }
+  },
+  watch: {
+    apiResponse(val) {
+      if (val.type == "success") {
+        setTimeout(() => {
+          this.$router.push({ name: "booking" });
+        }, 2000);
+      }
+    }
   }
+  
 };
 </script>
 
@@ -108,7 +122,7 @@ p {
 }
 @media screen and (max-width: 768px) {
   .form1 input {
-    width: 100%;
+    width: 70%;
   }
 }
 </style>

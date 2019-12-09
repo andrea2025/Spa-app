@@ -50,7 +50,7 @@ export default {
   min-height:calc(120vh - 100px);
   background-image: url('../assets/images/bg1.jpg');
   background-size: cover;
-  opacity: 0.7;
+  opacity: 0.8;
 }
 .side_text h2{
   color:black;
@@ -71,7 +71,12 @@ export default {
   padding: 10px 30px;
 background: rgb(2, 70, 19);
 border-radius: 20px;
+cursor: pointer;
 
+
+}
+.side_text button:hover{
+  background: transparent;
 }
 .side_text a{
 color:#fff;

@@ -82,7 +82,7 @@ export default {
       if (val.type == "success") {
         setTimeout(() => {
           this.$router.push({ name: "login" });
-        }, 5000);
+        }, 4000);
       }
     }
   }
@@ -121,6 +121,9 @@ button:hover {
   font-size: 15px;
   font-weight: 700;
 }
+.response{
+  color:mediumvioletred;
+}
 
 .form1 input {
   width: 30%;
@@ -136,7 +139,7 @@ p {
 }
 @media screen and (max-width: 768px) {
   .form1 input {
-    width: 100%;
+    width: 70%;
   }
 }
 </style>
