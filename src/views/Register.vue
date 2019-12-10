@@ -1,50 +1,53 @@
 <template>
   <div>
-    <div class="bg_img">
-      <NavBar />
-    </div>
-    <form @submit.prevent="sign" action="/register" method="post">
-      <h1>Register</h1>
-      <div class="form1">
-        <label for="fullname">Fullname:</label><br />
-        <input
-          type="name"
-          name="name"
-          placeholder="Enter name"
-          v-model="userRegister.name"
-          required
-        />
-      </div>
-      <div class="form1">
-        <label for="Email" class=" form_email">Email:</label><br />
-        <input
-          type="email"
-          name="email"
-          placeholder="Enter email"
-          v-model="userRegister.email"
-          required
-        />
-      </div>
-      <div class="form1">
-        <label for="password">Password:</label><br />
-        <input
-          type="password"
-          name="password"
-          placeholder="Password"
-          v-model="userRegister.password"
-          required
-        />
-      </div>
+    <NavBar />
+    <div class="mt-5">
 
-      <div class="response">
-        {{ apiResponse.message }}
+      <div class="">
+        <form @submit.prevent="sign" action="/register" method="post">
+          <h1>Register</h1>
+          <div class="form1">
+            <label for="fullname">Fullname:</label><br />
+            <input
+              type="name"
+              name="name"
+              placeholder="Enter name"
+              v-model="userRegister.name"
+              required
+            />
+          </div>
+          <div class="form1">
+            <label for="Email" class=" form_email">Email:</label><br />
+            <input
+              type="email"
+              name="email"
+              placeholder="Enter email"
+              v-model="userRegister.email"
+              required
+            />
+          </div>
+          <div class="form1">
+            <label for="password">Password:</label><br />
+            <input
+              type="password"
+              name="password"
+              placeholder="Password"
+              v-model="userRegister.password"
+              required
+            />
+          </div>
+
+          <div class="response">
+            {{ apiResponse.message }}
+          </div>
+          <p class="mt-2">
+            Already have an Account?
+            <router-link :to="{ name: 'login' }">Login</router-link>
+          </p>
+          <button type="submit">Sign Up</button>
+        </form>
       </div>
-      <p class="form1">
-        Already have an Account?
-        <router-link :to="{ name: 'login' }">Login</router-link>
-      </p>
-      <button type="submit">Sign Up</button>
-    </form>
+    </div>
     <footer1 />
   </div>
 </template>
@@ -94,14 +97,8 @@ export default {
   background: #eeeaea;
   box-sizing: border-box;
 }
-.bg_img {
-  background-image: url("../assets/images/bg1.jpg");
-  min-height: calc(100vh - 100px);
-  background-size: cover;
-}
-
-.form1 {
-  margin: 1rem 0;
+img {
+  height: 550px;
 }
 button {
   background: rgb(2, 70, 19);
@@ -121,13 +118,15 @@ button:hover {
   font-size: 15px;
   font-weight: 700;
 }
-.response{
-  color:mediumvioletred;
+.response {
+  color: mediumvioletred;
+  font-size: 20px;
 }
 
 .form1 input {
   width: 30%;
-  padding: 0.5rem;
+  margin: 0 auto;
+  padding: 0.3rem;
   border: 2px solid #000000;
   border-radius: 200px;
   font-size: 16px;
@@ -136,10 +135,5 @@ button:hover {
 }
 p {
   text-align: center;
-}
-@media screen and (max-width: 768px) {
-  .form1 input {
-    width: 70%;
-  }
 }
 </style>

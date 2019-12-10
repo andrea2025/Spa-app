@@ -11,7 +11,11 @@ export default new Vuex.Store({
       type: "",
       message: ""
     },
-    responseLog: {
+    responselog: {
+      type: "",
+      message: ""
+    },
+    responseBooked: {
       type: "",
       message: ""
     },
@@ -21,6 +25,7 @@ export default new Vuex.Store({
   getters: {
     apiResponse: state => state.response,
     apiResponseLog: state => state.responselog,
+    apiResponseBooked: state => state.responseBooked,
     userlogin(state) {
       return state.token !== null;
     },
@@ -35,12 +40,18 @@ export default new Vuex.Store({
       };
     },
     setResponseLogin: (state, payload) => {
-      state.responseLog = {
+      state.responselog = {
         type: payload.type,
         message: payload.message
       };
     },
-  
+    setResponseBooked: (state, payload) => {
+      state.responseBooked = {
+        type: payload.type,
+        message: payload.message
+      };
+    },
+
     signOut: (state, payload) => {
       state.token = payload;
     },
@@ -55,10 +66,9 @@ export default new Vuex.Store({
     },
     deleteBooking(state, id) {
       state.bookings = state.bookings.filter(function(item) {
-        return item._id !== id;
+        return item._id != id;
       });
     }
-    
   },
 
   actions: {
@@ -96,7 +106,7 @@ export default new Vuex.Store({
           type: "success",
           message: response.data.message
         };
-        commit("setResponse", responseObject);
+        commit("setResponseLogin", responseObject);
         const token = response.data.token;
         localStorage.setItem("access_token", token);
         commit("getToken", token);
@@ -105,7 +115,7 @@ export default new Vuex.Store({
           type: "failed",
           message: error.response.data.message
         };
-        console.log('responseObject')
+        console.log();
         commit("setResponseLogin", responseObject);
         console.log(error.response);
       }
@@ -126,15 +136,20 @@ export default new Vuex.Store({
           message: response.data.message
         };
 
-        router.push("/bookingSum");
-        commit("setResponse", responseObject);
+        //router.push("/bookingSum");
+        commit("setResponseBooked", responseObject);
       } catch (error) {
+        let responseObject = {
+          type: "failed",
+          message: error.response.data.message
+        };
+        commit("setResponseBooked", responseObject);
         console.log(error.response);
       }
     },
     logout({ commit }) {
       localStorage.removeItem("access_token");
-      console.log(this.destroytoken)
+      console.log(this.destroytoken);
       commit("destroyToken"), router.push("/");
     },
 
@@ -145,7 +160,7 @@ export default new Vuex.Store({
         console.log(response);
 
         commit("setbookings", response.data.data);
-        console.log("response", response)
+        console.log("response", response);
       } catch (error) {
         console.log(error.response.data.message);
       }
@@ -165,19 +180,9 @@ export default new Vuex.Store({
       } catch (error) {
         console.log(error.response);
       }
-    },
-    // async updateBooking({commit}, id) {
-    //   try{
-   
-    // const response = axios.put(`http://localhost:3000/booking/${id}`);
-    //     commit('updateBooking', id)
-    //     console.log('response',response);
-    //     router.push('/bookingSum')
-    //   }catch(error){
-    //       console.log(error.response.data.message)
-    // }
-    // }
-    },
+    }
+    
+  },
 
   modules: {}
 });

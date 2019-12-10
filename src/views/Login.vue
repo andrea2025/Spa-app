@@ -1,36 +1,38 @@
 <template>
   <div>
-    <div class="bg_img">
-      <NavBar />
-    </div>
+    <NavBar />
+    <div class="mt-5">
 
-    <form @submit.prevent="log" action="/login" method="post">
-      <h1>Member Login</h1>
-      <div class="form1">
-        <label for="Email">Email:</label><br />
-        <input
-          type="email"
-          name="email"
-          placeholder="Enter email"
-          v-model="userLogin.email"
-        />
+      <div class="mx-auto mt-5">
+        <form @submit.prevent="log" action="/login" method="post">
+          <h1>Member Login</h1>
+          <div class="form1">
+            <label for="Email">Email:</label><br />
+            <input
+              type="email"
+              name="email"
+              placeholder="Enter email"
+              v-model="userLogin.email"
+            />
+          </div>
+          <div class="form1">
+            <label for="password">Password:</label><br />
+            <input
+              type="password"
+              name="password"
+              placeholder="Password"
+              v-model="userLogin.password"
+            />
+          </div>
+          <div class="response">{{ apiResponseLog.message }}</div>
+          <p class="mt-2">
+            Don’t have an account?
+            <router-link :to="{ name: 'register' }">Sign Up</router-link>
+          </p>
+          <button type="submit">Login</button>
+        </form>
       </div>
-      <div class="form1">
-        <label for="password">Password:</label><br />
-        <input
-          type="password"
-          name="password"
-          placeholder="Password"
-          v-model="userLogin.password"
-        />
-      </div>
-       <div class="response">{{ apiResponse.message }}</div>
-      <p>
-        Don’t have an account?
-        <router-link :to="{ name: 'register' }">Sign Up</router-link>
-      </p>
-      <button type="submit">Login</button>
-    </form>
+    </div>
     <footer1 />
   </div>
 </template>
@@ -38,7 +40,7 @@
 <script>
 import footer1 from "@/components/footer1.vue";
 import NavBar from "@/components/NavBar.vue";
-import { mapActions,mapGetters } from "vuex";
+import { mapActions, mapGetters } from "vuex";
 export default {
   name: "login",
   components: {
@@ -53,8 +55,8 @@ export default {
       }
     };
   },
-  computed:{
-    ...mapGetters(['apiResponse'])
+  computed: {
+    ...mapGetters(["apiResponseLog"])
   },
   methods: {
     ...mapActions(["Login"]),
@@ -63,7 +65,7 @@ export default {
     }
   },
   watch: {
-    apiResponse(val) {
+    apiResponseLog(val) {
       if (val.type == "success") {
         setTimeout(() => {
           this.$router.push({ name: "booking" });
@@ -71,7 +73,6 @@ export default {
       }
     }
   }
-  
 };
 </script>
 
@@ -80,20 +81,15 @@ export default {
   background: #eeeaea;
   box-sizing: border-box;
 }
-.bg_img {
-  background-image: url("../assets/images/bg1.jpg");
-  min-height: calc(100vh - 100px);
-  background-size: cover;
-}
 
-.form1 {
-  margin: 1rem 0;
+img {
+  height: 550px;
 }
 button {
   background: rgb(2, 70, 19);
   border-radius: 40px;
   border: none;
-  padding: 0.8em 3em;
+  padding: 0.6rem 3em;
   color: white;
   cursor: pointer;
   margin-right: 1.5em;
@@ -107,10 +103,13 @@ button:hover {
   font-size: 15px;
   font-weight: 700;
 }
-
+.response {
+  color: mediumvioletred;
+  font-size: 20px;
+}
 .form1 input {
   width: 30%;
-  padding: 0.5rem;
+  padding: 0.3rem;
   border: 2px solid #000000;
   border-radius: 200px;
   font-size: 16px;
@@ -119,10 +118,5 @@ button:hover {
 }
 p {
   text-align: center;
-}
-@media screen and (max-width: 768px) {
-  .form1 input {
-    width: 70%;
-  }
 }
 </style>

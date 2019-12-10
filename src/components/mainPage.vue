@@ -9,7 +9,6 @@
 </template>
 
 <script>
-// import footer from '@/components/footer.vue'
 export default {
   name: "mainPage",
 };

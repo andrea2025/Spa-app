@@ -4,7 +4,7 @@
     <div class="d-flex justify-content-between pb-3">
       <div>
         <form @submit.prevent="booked" action="/booking" method="post">
-          <h1>Booking Enquiry</h1>
+          <h1 class="text-white">Booking Enquiry</h1>
           <div class="form-group ">
             <label for="name"> Fullname:</label>
             <input
@@ -39,7 +39,7 @@
             />
           </div>
 
-          <h3 class="text-bold">Fix an Appointment</h3>
+          <h3 class="text-bold text-white">Fix an Appointment</h3>
           <div class="form-group">
             <label for="date">Date</label>
             <input
@@ -71,10 +71,10 @@
               v-model="user.treatment"
             >
               <option value="massage">Massage</option>
-              <option value="body treatment">body Treatment</option>
+              <option value="body treatment">Body treatment</option>
               <option value="facials">Facials</option>
-              <option value="nail">nail removal</option>
-              <option value="medical">Medical Treatment</option>
+              <option value="nail">Nail removal</option>
+              <option value="medical">Medical treatment</option>
             </select>
           </div>
           <br />
@@ -93,13 +93,14 @@
           </div>
           <button type="submit">Book appointment</button>
         </form>
+        <div class="response">{{ apiResponseBooked.message }}</div>
       </div>
     </div>
   </div>
 </template>
 <script>
 import NavBar from "@/components/NavBar.vue";
-import { mapActions } from "vuex";
+import { mapActions, mapGetters } from "vuex";
 export default {
   name: "booking",
   components: {
@@ -108,7 +109,7 @@ export default {
   data() {
     return {
       user: {
-        name: "",
+        name: " ",
         number: "",
         email: "",
         date: "",
@@ -118,11 +119,22 @@ export default {
       }
     };
   },
-
+  computed: {
+    ...mapGetters(["apiResponseBooked"])
+  },
   methods: {
     ...mapActions(["Booking", "BookingSum"]),
     booked() {
       this.Booking(this.user);
+    }
+  },
+  watch: {
+    apiResponseBooked(val) {
+      if (val.type == "success") {
+        setTimeout(() => {
+          this.$router.push({ name: "bookingSum" });
+        }, 2000);
+      }
     }
   }
 };
@@ -135,13 +147,16 @@ export default {
   margin: 1rem auto;
 }
 .form_bar {
-  background-image: url("../assets/images/bg1.jpg");
+  background-image: url("../assets/images/hhh.jpg");
   color: #000;
 }
 
 form {
-
   margin: 0 auto;
+}
+.response {
+  color: mediumvioletred;
+  font-size: 20px;
 }
 button {
   background: rgb(2, 70, 19);
@@ -155,6 +170,7 @@ button {
 label {
   text-align: left;
   font-weight: bolder;
+  color:rgb(252, 248, 248);
 }
 button:hover {
   color: white;

@@ -13,7 +13,7 @@
         <p>Treatment: {{ item.treatment }}</p>
         <p>Comment: {{ item.msg }}</p>
         <div class="d-flex justify-content-center">
-          <router-link :to="{ name: 'edit', params: { id:item._id } }">
+          <router-link :to="{ name: 'edit', params: { id: item._id } }">
             <i
               aria-hidden="true"
               class="btn_edit fa fa-pencil-square-o mr-4"
