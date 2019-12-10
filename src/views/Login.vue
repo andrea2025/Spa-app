@@ -89,7 +89,7 @@ button {
   background: rgb(2, 70, 19);
   border-radius: 40px;
   border: none;
-  padding: 0.6rem 3em;
+  padding: 0.6em 2em;
   color: white;
   cursor: pointer;
   margin-right: 1.5em;
@@ -101,14 +101,15 @@ button:hover {
 }
 .form1 label {
   font-size: 15px;
-  font-weight: 700;
+  font-weight: bold;
+  margin-top: 1rem;
 }
 .response {
   color: mediumvioletred;
   font-size: 20px;
 }
 .form1 input {
-  width: 30%;
+  width:25%;
   padding: 0.3rem;
   border: 2px solid #000000;
   border-radius: 200px;

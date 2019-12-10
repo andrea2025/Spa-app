@@ -56,6 +56,7 @@ a {
   justify-content: space-between;
   padding: 0.2rem 4.75rem;
   align-items: center;
+  color:black;
 }
 .logo {
   font-size: 24px;
@@ -77,16 +78,15 @@ a {
   
 }
 .nav_auth {
-  background: linear-gradient(180deg, rgba(197, 177, 177, 0.2) 100%), #ea3cce;
-  color: #fff;
+  /* background: linear-gradient(180deg, rgba(197, 177, 177, 0.2) 100%), #ea3cce; */
+  color: black;
   cursor: pointer;
-  border-radius: 20px;
-  padding: 0.4rem 0.8em;
+  
 }
 .nav_auth:hover {
-  background: linear-gradient(180deg, #c4a0a0 0%, rgba(255, 255, 255, 0) 100%),
-    #ea3cce;
-    color: rgb(2, 70, 19);
+ 
+    color:  #ea3cce;
+   
   
 }
 .nav_list_item {

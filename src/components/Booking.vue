@@ -1,7 +1,9 @@
 <template>
-  <div class="form_bar">
-    <NavBar />
-    <div class="d-flex justify-content-between pb-3">
+  <div>
+    <NavBar/>
+    <div class="form_bar pt-4">
+    
+    <div class="d-flex">
       <div>
         <form @submit.prevent="booked" action="/booking" method="post">
           <h1 class="text-white">Booking Enquiry</h1>
@@ -16,7 +18,8 @@
               v-model="user.name"
             />
           </div>
-          <div class="form-group">
+          <div class="d-flex mt-2 ">
+            <div class="form-group">
             <label for="number">Number</label>
             <input
               type="number"
@@ -27,7 +30,7 @@
               v-model="user.number"
             />
           </div>
-          <div class="form-group">
+          <div class="form-group ml-3">
             <label for="email">Email:</label>
             <input
               type="email"
@@ -38,9 +41,10 @@
               v-model="user.email"
             />
           </div>
-
-          <h3 class="text-bold text-white">Fix an Appointment</h3>
-          <div class="form-group">
+          </div>
+        <div class="d-flex mt-2 ">
+          
+          <div class="form-group item">
             <label for="date">Date</label>
             <input
               type="date"
@@ -51,18 +55,20 @@
               v-model="user.date"
             />
           </div>
-          <div class="form-group">
+          <div class="form-group items">
             <label for="time">Time</label>
             <input
               type="time"
               name="time"
               value="time"
-              class="form-control"
+              class="form-control "
               placeholder="time"
               v-model="user.time"
             />
           </div>
-          <div>
+          
+        </div>
+          <div class="mt-2">
             <label for="sect">Treatment Selection</label>
             <select
               name="treatment"
@@ -96,6 +102,7 @@
         <div class="response">{{ apiResponseBooked.message }}</div>
       </div>
     </div>
+  </div>
   </div>
 </template>
 <script>
@@ -144,7 +151,7 @@ export default {
 * {
   box-sizing: border-box;
   display: block;
-  margin: 1rem auto;
+  margin: 0 auto;
 }
 .form_bar {
   background-image: url("../assets/images/hhh.jpg");
@@ -154,9 +161,18 @@ export default {
 form {
   margin: 0 auto;
 }
+input::placeholder{
+  background: rgba(252, 249, 247, 0.7);
+opacity: 0.7;
+
+}
 .response {
   color: mediumvioletred;
   font-size: 20px;
+}
+.items{
+  transform: translateX(-50%);
+  
 }
 button {
   background: rgb(2, 70, 19);
@@ -176,5 +192,8 @@ button:hover {
   color: white;
   background: transparent;
   border: 2px solid black;
+}
+.item{
+  margin-right: 6em;
 }
 </style>

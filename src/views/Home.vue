@@ -1,7 +1,8 @@
 <template>
   <div class="home">
+     <NavBar />
     <div class="top_bar">
-      <NavBar />
+     
       <div class="side_text">
         <h2>Experience the secret of Relaxation</h2>
         <div>
@@ -55,10 +56,11 @@ export default {
   min-height: calc(120vh - 100px);
   background-image: url("../assets/images/bg1.jpg");
   background-size: cover;
-  opacity: 0.8;
+  opacity: 1;
 }
 .side_text h2 {
-  color: black;
+  color: #fff;
+  font-weight: bolder;
   font-size: 36px;
   line-height: 2em;
   word-spacing: 5px;
@@ -67,7 +69,7 @@ export default {
   margin: 0 auto;
   padding-top: 9rem;
 }
-.side_text button {
+.side_text button { 
   margin-top: 1em;
   border: none;
   padding: 10px 30px;

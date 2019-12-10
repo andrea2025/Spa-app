@@ -3,7 +3,7 @@
     <NavBar />
     <div class="mt-5">
 
-      <div class="">
+      <div class="bg_layer">
         <form @submit.prevent="sign" action="/register" method="post">
           <h1>Register</h1>
           <div class="form1">
@@ -94,17 +94,19 @@ export default {
 
 <style scoped>
 * {
-  background: #eeeaea;
+  background: #eeeaea; 
   box-sizing: border-box;
 }
 img {
   height: 550px;
 }
+
+
 button {
   background: rgb(2, 70, 19);
   border-radius: 40px;
   border: none;
-  padding: 0.8em 3em;
+  padding: 0.6em 2em;
   color: white;
   cursor: pointer;
   margin-right: 1.5em;
@@ -116,7 +118,9 @@ button:hover {
 }
 .form1 label {
   font-size: 15px;
-  font-weight: 700;
+  font-weight:bold;
+  margin-top: 1rem;
+
 }
 .response {
   color: mediumvioletred;
@@ -124,7 +128,7 @@ button:hover {
 }
 
 .form1 input {
-  width: 30%;
+  width: 25%;
   margin: 0 auto;
   padding: 0.3rem;
   border: 2px solid #000000;
