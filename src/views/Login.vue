@@ -1,9 +1,9 @@
 <template>
   <div>
-    <NavBar />
-    <div class="mt-5">
+    
+    
 
-      <div class="mx-auto mt-5">
+      <div class="mx-auto pt-5">
         <form @submit.prevent="log" action="/login" method="post">
           <h1>Member Login</h1>
           <div class="form1">
@@ -32,19 +32,19 @@
           <button type="submit">Login</button>
         </form>
       </div>
-    </div>
+    
     <footer1 />
   </div>
 </template>
 
 <script>
 import footer1 from "@/components/footer1.vue";
-import NavBar from "@/components/NavBar.vue";
+//import NavBar from "@/components/NavBar.vue";
 import { mapActions, mapGetters } from "vuex";
 export default {
   name: "login",
   components: {
-    NavBar,
+   
     footer1
   },
   data() {
@@ -109,8 +109,9 @@ button:hover {
   font-size: 20px;
 }
 .form1 input {
+  background: #fff;
   width:25%;
-  padding: 0.3rem;
+  padding: 0.3rem 0.6rem;
   border: 2px solid #000000;
   border-radius: 200px;
   font-size: 16px;

@@ -6,9 +6,11 @@
       <div class="side_text">
         <h2>Experience the secret of Relaxation</h2>
         <div>
+          <router-link :to="{ name: 'login' }">
           <button>
-            <router-link :to="{ name: 'login' }">Book Now</router-link>
+            Book Now
           </button>
+          </router-link>
         </div>
       </div>
     </div>
@@ -56,10 +58,10 @@ export default {
   min-height: calc(120vh - 100px);
   background-image: url("../assets/images/bg1.jpg");
   background-size: cover;
-  opacity: 1;
+  opacity: 0.8;
 }
 .side_text h2 {
-  color: #fff;
+  color: rgb(2, 70, 19);
   font-weight: bolder;
   font-size: 36px;
   line-height: 2em;
@@ -71,19 +73,22 @@ export default {
 }
 .side_text button { 
   margin-top: 1em;
-  border: none;
+  border: 2px solid black;
   padding: 10px 30px;
   background: rgb(2, 70, 19);
   border-radius: 20px;
   cursor: pointer;
+  color: #fff;
 }
 .side_text button:hover {
-  background: transparent;
+  background: #fff;
+  color:rgb(2, 70, 19);
+  
 }
-.side_text a {
-  color: #fff;
+/* .side_text a {
+ color:black;
   text-decoration: none;
-}
+} */
 .mainPage {
   margin-top: 5em;
 }

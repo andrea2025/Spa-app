@@ -37,7 +37,7 @@ export default {
 <style scoped>
 h3 {
   margin-top: 2em;
-  color: #ea3cce;
+  color: #2c3e50;
   text-align: left;
 }
 a {

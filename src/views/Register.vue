@@ -1,9 +1,9 @@
 <template>
   <div>
-    <NavBar />
-    <div class="mt-5">
+  
+   
 
-      <div class="bg_layer">
+      <div class="bg_layer pt-5">
         <form @submit.prevent="sign" action="/register" method="post">
           <h1>Register</h1>
           <div class="form1">
@@ -47,19 +47,19 @@
           <button type="submit">Sign Up</button>
         </form>
       </div>
-    </div>
+   
     <footer1 />
   </div>
 </template>
 
 <script>
 import footer1 from "@/components/footer1.vue";
-import NavBar from "@/components/NavBar.vue";
+//import NavBar from "@/components/NavBar.vue";
 import { mapActions, mapGetters } from "vuex";
 export default {
   name: "register",
   components: {
-    NavBar,
+    
     footer1
   },
   data() {
@@ -129,8 +129,9 @@ button:hover {
 
 .form1 input {
   width: 25%;
+   background: #fff;
   margin: 0 auto;
-  padding: 0.3rem;
+  padding: 0.3rem 0.8rem;
   border: 2px solid #000000;
   border-radius: 200px;
   font-size: 16px;

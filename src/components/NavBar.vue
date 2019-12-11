@@ -61,7 +61,7 @@ a {
 .logo {
   font-size: 24px;
   font-weight: 800;
-  color: rgb(236, 19, 200);
+  color:#2c3e50;
   text-decoration: none;
 }
 .nav_list {

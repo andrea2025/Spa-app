@@ -1,12 +1,12 @@
 <template>
   <div>
     <NavBar/>
-    <div class="form_bar pt-4">
-    
+    <div class="form_bar pt-4 d-flex" >
+    <img src="../assets/images/hhh.jpg" alt="">
     <div class="d-flex">
       <div>
         <form @submit.prevent="booked" action="/booking" method="post">
-          <h1 class="text-white">Booking Enquiry</h1>
+          <h1 class="">Booking Enquiry</h1>
           <div class="form-group ">
             <label for="name"> Fullname:</label>
             <input
@@ -14,7 +14,7 @@
               name="name"
               value="name"
               class="form-control "
-              placeholder="Name"
+              placeholder="fullname"
               v-model="user.name"
             />
           </div>
@@ -73,9 +73,9 @@
             <select
               name="treatment"
               class="form-control"
-              aria-placeholder="Spa treatment"
               v-model="user.treatment"
             >
+              <option value="#">Choose treament...</option>
               <option value="massage">Massage</option>
               <option value="body treatment">Body treatment</option>
               <option value="facials">Facials</option>
@@ -152,19 +152,19 @@ export default {
   box-sizing: border-box;
   display: block;
   margin: 0 auto;
+  
 }
-.form_bar {
-  background-image: url("../assets/images/hhh.jpg");
-  color: #000;
+img{
+  width: 40%;
 }
 
-form {
-  margin: 0 auto;
-}
 input::placeholder{
   background: rgba(252, 249, 247, 0.7);
 opacity: 0.7;
 
+}
+input,textarea,select{
+  border: 1px solid black;
 }
 .response {
   color: mediumvioletred;
@@ -186,14 +186,20 @@ button {
 label {
   text-align: left;
   font-weight: bolder;
-  color:rgb(252, 248, 248);
+  
+  color:#000;
 }
 button:hover {
-  color: white;
+  color: #2c3e50;
   background: transparent;
   border: 2px solid black;
 }
 .item{
   margin-right: 6em;
+}
+@media screen  and (max-width: 768px) {
+  img{
+    display:none;
+  }
 }
 </style>
